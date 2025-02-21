@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şiir Sayfası</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh; /* Minimum yüksekliği ayarla */
+            background-color: rgba(22, 82, 192, 0.884);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative; /* Butonun konumlandırılması için */
+            overflow-x: hidden; /* Yatay kaydırmayı engelle */
+        }
+        .balloon-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Balonların taşmasını önlemek için */
+            pointer-events: none; /* Balonların tıklanabilirliğini kapat */
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #8f2a2a; /* Kar beyazı */
+            color: black;
+            border: none;
+            border-radius: 50%;
+            width: 50px; /* Buton boyutunu artırdık */
+            height: 50px; /* Buton boyutunu artırdık */
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Butonun diğer elemanların üstünde olmasını sağladık */
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 80%;
+            max-width: 1000px;
+            margin-top: 100px; /* Üstten boşluk bırak */
+        }
+        .grid-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .photo {
+            width: 100%; /* Responsive için genişlik ayarlandı */
+            max-width: 250px; /* Maksimum genişlik */
+            height: auto; /* Yükseklik otomatik */
+            aspect-ratio: 1 / 1; /* Kare oranı */
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 10px;
+            border-radius: 15px; /* Köşeleri yuvarlak yap */
+        }
+        #photo1 {
+            background-image: url('photo1.jpg');
+        }
+        #photo2 {
+            background-image: url('photo2.jpg');
+        }
+        #photo3 {
+            background-image: url('photo3.jpg');
+        }
+        #photo4 {
+            background-image: url('photo4.jpg');
+        }
+        #photo5 {
+            background-image: url('photo5.jpg');
+        }
+        #photo6 {
+            background-image: url('photo6.jpg');
+        }
+        .listen-button {
+            background-color: #f5f5f5; /* Kar beyazı */
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .celebrate-button {
+            background-color: #f5f5f5; /* Kar beyazı */
+            color: black;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 20px 0; /* Üst ve alt boşluk */
+            align-self: center; /* Ortala */
+        }
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 70px;
+            background-color: red;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: float 3s linear forwards;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
+        }
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .back-button {
+                top: 20px;
+                left: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            .celebrate-button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            .back-button {
+                top: 10px;
+                left: 10px;
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+            .celebrate-button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="balloon-container"></div>
+    <button class="back-button" onclick="window.location.href='anaekran.html'">&larr;</button>
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="photo" id="photo1"></div>
+            <h3>Behçet Necatigil - Sevgilerde<br><br></h3>
+            <button class="listen-button" onclick="toggleSound(this, 'sound1.mp3')">Dostunun hediyesini dinlemek için tıkla🌟</button>
+        </div>
+        <div class="grid-item">
+            <div class="photo" id="photo2"></div>
+            <h3>Cahit Zarifoğlu - Anılar Defterinde Gül Yaprağı </h3>
+            <button class="listen-button" onclick="toggleSound(this, 'sound2.mp3')">Dostunun hediyesini dinlemek için tıkla🐣</button>
+        </div>
+        <div class="grid-item">
+            <div class="photo" id="photo3"></div>
+            <h3>İsmet Özel - Yaşamak Umrumdadır</h3>
+            <button class="listen-button" onclick="toggleSound(this, 'sound3.mp3')">Dostunun hediyesini dinlemek için tıkla💜</button>
+        </div>
+        <div class="grid-item">
+            <div class="photo" id="photo4"></div>
+            <h3>Arkadaş Zekai - Sevdadır</h3>
+            <button class="listen-button" onclick="toggleSound(this, 'sound4.mp3')">Dostunun hediyesini dinlemek için tıkla💐</button>
+        </div>
+        <div class="grid-item">
+            <div class="photo" id="photo5"></div>
+            <h3>Ahmed Muhip Dranas - Kar</h3>
+            <button class="listen-button" onclick="toggleSound(this, 'sound5.mp3')">Dostunun hediyesini dinlemek için tıkla😺</button>
+        </div>
+        
+    </div>
+    <button class="celebrate-button" onclick="startBalloons()">Tıkla ve yeni yaşına birlikte girelim 🎂</button>
+    <audio id="audioPlayer" style="display:none;"></audio>
+    <script>
+        function toggleSound(button, file) {
+            var audio = document.getElementById('audioPlayer');
+            if (audio.src.includes(file) && !audio.paused) {
+                audio.pause();
+                audio.currentTime = 0; // Sesi başa sar
+                button.textContent = "Mutlu Yıllar! 🎂";
+            } else {
+                audio.src = file;
+                audio.play();
+                button.textContent = "Sesi durdur";
+            }
+        }
+
+        function createBalloon() {
+            let balloon = document.createElement("div");
+            balloon.classList.add("balloon");
+            document.querySelector('.balloon-container').appendChild(balloon);
+            
+            let leftPosition = Math.random() * window.innerWidth;
+            balloon.style.left = `${leftPosition}px`;
+            
+            let colors = ["red", "blue", "yellow", "green", "purple", "orange"];
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            setTimeout(() => {
+                balloon.remove();
+            }, 5000);
+        }
+        
+        function startBalloons() {
+            let balloonInterval = setInterval(createBalloon, 300);
+            setTimeout(() => {
+                clearInterval(balloonInterval);
+            }, 7000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Ekran</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .button-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .magic-button {
+            background-color: rgba(22, 82, 192, 0.884);
+            color: white;
+            padding: 25px 45px;
+            border: none;
+            border-radius: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <video class="video-background" autoplay muted loop>
+        <source src="video1.mp4" type="video/mp4">
+        Tarayıcınız video etiketini desteklemiyor.
+    </video>
+    <div class="button-container">
+        <p style="color: white; font-size: 40px; margin-bottom: 150px;"> "Dostluk, zamanla eskimeyen bir hediyedir. Bugün senin günün, iyi ki doğdun!" 🎂🎉💙</p>
+        <button class="magic-button" onclick="window.location.href='siir.html'">Sihirli Butona Dokun! ✨</button>
+    </div>
+</body>
+</html>
